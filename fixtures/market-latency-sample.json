@@ -1,0 +1,48 @@
+{
+  "organization": "Kinetic Gain synthetic trading estate",
+  "generated_at": "2026-06-06T00:00:00.000Z",
+  "lanes": [
+    {
+      "name": "Equities order gateway",
+      "venue": "NYSE",
+      "owner": "Low-latency trading",
+      "budget_micros": 900,
+      "p50_micros": 410,
+      "p95_micros": 930,
+      "p99_micros": 1380,
+      "jitter_micros": 180,
+      "packet_loss_bps": 22,
+      "retry_rate_bps": 34,
+      "revenue_at_risk_usd": 2800000,
+      "next_action": "Pin gateway jitter and isolate retry storms before the next market-open review."
+    },
+    {
+      "name": "Options quote fanout",
+      "venue": "OPRA",
+      "owner": "Market data engineering",
+      "budget_micros": 1200,
+      "p50_micros": 520,
+      "p95_micros": 1180,
+      "p99_micros": 1510,
+      "jitter_micros": 240,
+      "packet_loss_bps": 16,
+      "retry_rate_bps": 26,
+      "revenue_at_risk_usd": 1900000,
+      "next_action": "Compress feed-handler queues and attach p99 fanout evidence."
+    },
+    {
+      "name": "FX price normalization",
+      "venue": "Multi-bank FX",
+      "owner": "Pricing systems",
+      "budget_micros": 1800,
+      "p50_micros": 640,
+      "p95_micros": 1320,
+      "p99_micros": 1760,
+      "jitter_micros": 95,
+      "packet_loss_bps": 6,
+      "retry_rate_bps": 9,
+      "revenue_at_risk_usd": 720000,
+      "next_action": "Keep normalization latency inside watch thresholds and validate stale-price guards."
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: cargo test
+      - run: cargo run -- fixtures/market-latency-sample.json
+      - run: python scripts/scenario_analysis.py
+      - run: python scripts/render_site.py
+      - run: python scripts/smoke_check.py
